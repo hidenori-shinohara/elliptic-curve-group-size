@@ -18,6 +18,27 @@ def equiv(a, b, c, x, y, z, n):
             return False
     return True
 
+# Calculate (1 / a) mod p
+def inv(a, p):
+    for x in range(p):
+        if (x * a) % p == 1:
+            return x
+    raise Exception("no inverse")
+
+
+# Add p1 + p2
+# within the elliptic curve group
+# associated to y^2 = x^3 + ax + b
+# in F_p
+def add(p1, p2, a, b, p):
+    if p1 == (0, 0, 1):
+        return p2
+    if p2 == (0, 0, 1):
+        return p1
+    if p1[0] == p2[0] and p1[1] == -p2[1] and p1[2] == p2[2]:
+        return (0, 0, 1)
+
+
 
 # all group elements of
 # y^2 = x^3 + ax + b
